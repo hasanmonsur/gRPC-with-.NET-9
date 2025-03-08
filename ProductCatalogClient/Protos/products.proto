@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ProductCatalog";
+
+package catalog;
+
+// Product Catalog Service
+service ProductCatalogService {
+  // Unary call to get a single product by ID
+  rpc GetProduct (ProductRequest) returns (ProductResponse);
+
+  // Server-streaming call to get all products
+  rpc GetAllProducts (EmptyRequest) returns (stream ProductResponse);
+}
+
+// Messages
+message ProductRequest {
+  int32 id = 1;
+}
+
+message EmptyRequest {}
+
+message ProductResponse {
+  int32 id = 1;
+  string name = 2;
+  double price = 3;
+  string description = 4;
+}
